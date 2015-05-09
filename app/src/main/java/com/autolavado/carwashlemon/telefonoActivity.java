@@ -113,35 +113,44 @@ public class telefonoActivity extends ActionBarActivity {
         UsaBD admin = new UsaBD(this);
         SQLiteDatabase bd = admin.getWritableDatabase();
 
-        Cursor fila = bd.rawQuery("select correo from Usuarios where correo='" + u+"' and contra='"+pass2+"'", null);
+        Cursor fila = bd.rawQuery("select telefono from Usuarios where correo='" + u + "' and contra='" + pass2 + "'", null);
 
-        if (fila.moveToFirst()) {
+        boolean existeUsuario = fila.moveToFirst();
+        if (existeUsuario){
+            int telefono = fila.getInt(0);
+            Toast.makeText(this, "telefono anterior: " + fila.getInt(0), Toast.LENGTH_SHORT).show();
+        }
+
+        bd.close();
+
+        if (existeUsuario) {
 
             ContentValues registro = new ContentValues();
-
             registro.put("telefono", num);
-
             int cant = bd.update("Usuarios", registro, "telefono=" + num, null);
 
             if (cant == 1){
-                Toast.makeText(this, "Se actualizó el usuario", Toast.LENGTH_SHORT)
-                        .show();}
+                Toast.makeText(this, "Se actualizó el usuario", Toast.LENGTH_SHORT) .show();
+            }
             else{
-                Toast.makeText(this, "No se pudo actualizar",
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "No se pudo actualizar", Toast.LENGTH_SHORT).show();
 
-                /*Cursor fila2 = bd.rawQuery(
-                        "select telefono from Usuario where correo = '" + u + "'", null);
+                admin = new UsaBD(this);
+                bd = admin.getWritableDatabase();
+
+                Cursor fila2 = bd.rawQuery(
+                        "select telefono from Usuarios where correo = '" + u + "'", null);
                 if (fila.moveToFirst()) {
-                    Toast.makeText(this, "telefono: " + fila2.getInt(0), Toast.LENGTH_SHORT)
-                            .show();
-                }*/
+                    Toast.makeText(this, "telefono: " + fila2.getInt(0), Toast.LENGTH_SHORT).show();
+                }
+
+                bd.close();
             }
         }
         else{
             Toast.makeText(this, "Contraseña incorrecta",
                     Toast.LENGTH_SHORT).show();
         }
-        bd.close();
+
     }
 }
