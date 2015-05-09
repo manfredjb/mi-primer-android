@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -72,7 +73,7 @@ public class contraActivity extends ActionBarActivity {
         startActivity(i);
 
     }
-    public void BtnGuardarcontra(){
+    public void BtnGuardarcontra(View view){
         String nc=contran.getText().toString();
         String nnc=contrann.getText().toString();
         String vc=vcontra.getText().toString();

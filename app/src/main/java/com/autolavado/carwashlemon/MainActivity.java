@@ -105,8 +105,8 @@ public class MainActivity extends ActionBarActivity {
         } else{
             ContentValues registro = new ContentValues();
             registro.put("correo",   correo1);
-            registro.put("contra",      nro1);
-            registro.put("telefono",      tel1);
+            registro.put("contra",      pass1);
+            registro.put("telefono",      nro1);
 
             bd.insert("Usuarios", null, registro);
 
@@ -143,15 +143,17 @@ public class MainActivity extends ActionBarActivity {
                 "select correo from Usuarios where correo='" + correo2+"' and contra='"+pass2+"'", null);
 
         if (fila.moveToFirst()) {
-
+            bd.close();
             User.setuser(correo2);
             llamarprincipal();
         }
         else{
             Toast.makeText(this, "No existe el usuario",
-                    Toast.LENGTH_SHORT).show();
+            Toast.LENGTH_SHORT).show();
+            bd.close();
         }
-        bd.close();
+
+
 
     }
 
@@ -179,6 +181,7 @@ public class MainActivity extends ActionBarActivity {
             }
         }
 
+        bd.close();
 
     }
 }

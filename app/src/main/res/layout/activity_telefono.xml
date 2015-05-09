@@ -167,7 +167,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Guardar"
-            android:id="@+id/guardartel"
+            android:id="@+id/BtnGuardartel"
             android:layout_column="7"
             android:onClick="BtnGuardartel" />
     </TableRow>

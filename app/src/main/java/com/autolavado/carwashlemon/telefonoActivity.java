@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -73,7 +74,7 @@ public class telefonoActivity extends ActionBarActivity {
 
     }
 
-    public void BtnGuardartel(){
+    public void BtnGuardartel(View view){
         String tel=tel2.getText().toString();
         String contra=contra2.getText().toString();
 
@@ -107,6 +108,7 @@ public class telefonoActivity extends ActionBarActivity {
         String pass2=contra2.getText().toString();
         String tel=tel2.getText().toString();
         int num=Integer.parseInt(tel);
+        Toast.makeText(this, tel, Toast.LENGTH_SHORT).show();
 
         UsaBD admin = new UsaBD(this);
         SQLiteDatabase bd = admin.getWritableDatabase();
@@ -127,6 +129,13 @@ public class telefonoActivity extends ActionBarActivity {
             else{
                 Toast.makeText(this, "No se pudo actualizar",
                         Toast.LENGTH_SHORT).show();
+
+                /*Cursor fila2 = bd.rawQuery(
+                        "select telefono from Usuario where correo = '" + u + "'", null);
+                if (fila.moveToFirst()) {
+                    Toast.makeText(this, "telefono: " + fila2.getInt(0), Toast.LENGTH_SHORT)
+                            .show();
+                }*/
             }
         }
         else{
