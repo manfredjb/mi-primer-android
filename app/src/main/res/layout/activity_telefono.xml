@@ -1,0 +1,174 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <Space
+            android:layout_width="40px"
+            android:layout_height="40px"
+            android:layout_column="2" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Teléfono"
+            android:id="@+id/textView"
+            android:layout_column="2" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:ems="10"
+            android:id="@+id/editText"
+            android:layout_column="7" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <Space
+            android:layout_width="40px"
+            android:layout_height="40px"
+            android:layout_column="2" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Contraseña"
+            android:id="@+id/txtvcontact"
+            android:layout_column="2" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/txtcontact"
+            android:layout_column="7" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <Space
+            android:layout_width="40px"
+            android:layout_height="40px"
+            android:layout_column="7" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guardar"
+            android:id="@+id/guardartel"
+            android:layout_column="7"
+            android:onClick="guardartel" />
+    </TableRow>
+</TableLayout>

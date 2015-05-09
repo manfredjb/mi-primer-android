@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">carwashlemon</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="logo">Logo</string>
+    <string name="title_activity_contra">contraActivity</string>
+    <string name="title_activity_principal">principalActivity</string>
+    <string name="action_contra">Contraseña</string>
+    <string name="action_tel">Teléfono</string>
+    <string name="title_activity_telefono">telefonoActivity</string>
+    <string name="action_salir">Salir</string>
+</resources>

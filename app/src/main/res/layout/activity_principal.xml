@@ -1,0 +1,177 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_weight="1"
+        android:id="@+id/tabHost"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </TabWidget>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <!--
+                    tabCita
+                    este tab se encarga de mostrar los campos para guardar la cita
+                -->
+                <LinearLayout
+                    android:id="@+id/tabCita"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <!-- seleccionar la sucursal -->
+                    <Spinner
+                        android:id="@+id/sucursales_para_citas"
+                        android:layout_width="match_parent"
+                        android:textSize="20dp"
+                        android:background="@android:drawable/btn_dropdown"
+                        android:layout_height="wrap_content" />
+
+                    <CalendarView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/calendario"
+                        android:layout_weight="2"
+                        android:layout_gravity="center_horizontal" />
+
+                    <!-- hora -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Hora:"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:layout_gravity="center_horizontal" />
+
+                        <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/horas"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Guardar"
+                        android:id="@+id/button"
+                        android:layout_gravity="center_horizontal"
+                        android:onClick="guardarCita" />
+                </LinearLayout>
+
+
+                <!-- tabSucursales -->
+                <LinearLayout
+                    android:id="@+id/tabSucursales"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <!-- detalles de la sucursal -->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:id="@+id/sucursal_imagen"
+                        android:layout_weight="1"
+                        android:src="@drawable/mono"/>
+
+
+                    <!-- detalles de la sucursal -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <!-- Nombrel -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Nombre:"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:layout_gravity="center_horizontal" />
+                            <TextView
+                                android:id="@+id/sucursal_nombre"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textSize="20dp"
+                                android:layout_weight="2"
+                                android:layout_gravity="center_horizontal" />
+                        </LinearLayout>
+
+                        <!-- direccion -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_margin="10dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="DirecciÃ³n:"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:layout_gravity="center_horizontal" />
+                            <TextView
+                                android:id="@+id/sucursal_direccion"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textSize="20dp"
+                                android:layout_weight="2"
+                                android:layout_gravity="center_horizontal" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- seleccionar la sucursal -->
+                    <Spinner
+                        android:id="@+id/nombres_sucursales"
+                        android:layout_width="match_parent"
+                        android:textSize="20dp"
+                        android:background="@android:drawable/btn_dropdown"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+
+</LinearLayout>
+
