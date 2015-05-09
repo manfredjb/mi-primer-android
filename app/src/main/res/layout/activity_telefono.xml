@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:inputType="phone"
             android:ems="10"
-            android:id="@+id/editText"
+            android:id="@+id/txttel2"
             android:layout_column="7" />
 
     </TableRow>
@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/txtcontact"
+            android:id="@+id/txtcontratel"
             android:layout_column="7" />
     </TableRow>
 
@@ -169,6 +169,6 @@
             android:text="Guardar"
             android:id="@+id/guardartel"
             android:layout_column="7"
-            android:onClick="guardartel" />
+            android:onClick="BtnGuardartel" />
     </TableRow>
 </TableLayout>
