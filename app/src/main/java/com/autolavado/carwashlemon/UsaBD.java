@@ -56,7 +56,8 @@ public class UsaBD extends SQLiteOpenHelper{
         String fechaFormateada = sdf.format(fecha);
 
         SQLiteDatabase bd = getWritableDatabase();
-        Cursor cursor = bd.rawQuery("select h.hora from Horario h, Citas c where h.hora != c.hora and c.fecha = '" + fechaFormateada + "' and c.sucursal = '" + sucursal.getNombre() + "'", null);
+        //Cursor cursor = bd.rawQuery("select h.hora from Horario h, Citas c where h.hora != c.hora and c.fecha = '" + fechaFormateada + "' and c.sucursal = '" + sucursal.getNombre() + "'", null);
+        Cursor cursor = bd.rawQuery("select h.hora from Horario h where h.hora not in (select c.hora from Citas c where c.fecha = '" + fechaFormateada + "' and c.sucursal = '" + sucursal.getNombre() + "')", null);
         List<String> horas = new ArrayList<String>();
 
         //Nos aseguramos de que existe al menos un registro

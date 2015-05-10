@@ -20,6 +20,7 @@ public class telefonoActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_telefono);
 
         tel2=(EditText)findViewById(R.id.txttel2);
@@ -51,16 +52,27 @@ public class telefonoActivity extends ActionBarActivity {
 
 
         switch (item.getItemId()){
-            case R.id.action_contra:
+            case R.id.action_contra:{
                 llamarContra();
-            case R.id.action_tel:
+                break;
+            }
+
+            case R.id.action_tel:{
                 llamarTel();
-            case R.id.action_salir:
+                break;
+            }
+
+            case R.id.action_salir:{
                 finish();
+                break;
+            }
+
 
             default:
                 return super.onOptionsItemSelected(item);
         }
+
+        return true;
     }
 
     public void llamarContra(){
@@ -113,44 +125,37 @@ public class telefonoActivity extends ActionBarActivity {
         UsaBD admin = new UsaBD(this);
         SQLiteDatabase bd = admin.getWritableDatabase();
 
-        Cursor fila = bd.rawQuery("select telefono from Usuarios where correo='" + u + "' and contra='" + pass2 + "'", null);
+        Cursor fila = bd.rawQuery("select correo from Usuarios where correo='" + u+"' and contra='"+pass2+"'", null);
 
-        boolean existeUsuario = fila.moveToFirst();
-        if (existeUsuario){
-            int telefono = fila.getInt(0);
-            Toast.makeText(this, "telefono anterior: " + fila.getInt(0), Toast.LENGTH_SHORT).show();
-        }
+        if (fila.moveToFirst()) {
 
-        bd.close();
-
-        if (existeUsuario) {
-
+            String correo = fila.getString(0);
             ContentValues registro = new ContentValues();
+
             registro.put("telefono", num);
-            int cant = bd.update("Usuarios", registro, "telefono=" + num, null);
+
+            //int cant = bd.update("Usuarios", registro, "telefono=" + num, null);
+            int cant = bd.update("Usuarios", registro, "correo=?", new String[]{ correo });
 
             if (cant == 1){
-                Toast.makeText(this, "Se actualizó el usuario", Toast.LENGTH_SHORT) .show();
-            }
+                Toast.makeText(this, "Se actualizó el usuario", Toast.LENGTH_SHORT)
+                        .show();}
             else{
-                Toast.makeText(this, "No se pudo actualizar", Toast.LENGTH_SHORT).show();
-
-                admin = new UsaBD(this);
-                bd = admin.getWritableDatabase();
+                Toast.makeText(this, "No se pudo actualizar",
+                        Toast.LENGTH_SHORT).show();
 
                 Cursor fila2 = bd.rawQuery(
-                        "select telefono from Usuarios where correo = '" + u + "'", null);
+                        "select telefono from Usuario where correo = '" + u + "'", null);
                 if (fila.moveToFirst()) {
-                    Toast.makeText(this, "telefono: " + fila2.getInt(0), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "telefono: " + fila2.getInt(0), Toast.LENGTH_SHORT)
+                            .show();
                 }
-
-                bd.close();
             }
         }
         else{
             Toast.makeText(this, "Contraseña incorrecta",
                     Toast.LENGTH_SHORT).show();
         }
-
+        bd.close();
     }
 }

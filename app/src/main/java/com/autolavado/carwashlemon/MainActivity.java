@@ -51,7 +51,7 @@ public class MainActivity extends ActionBarActivity {
         tabHost.addTab(spec1);
         tabHost.addTab(spec2);
 
-        llenarhorarios();
+
 
     }
     public void Registrarse(View view) {
@@ -163,25 +163,5 @@ public class MainActivity extends ActionBarActivity {
         startActivity(i);
     }
 
-    public void llenarhorarios(){
 
-        UsaBD admin = new UsaBD(this);
-        SQLiteDatabase bd = admin.getWritableDatabase();
-
-        Cursor fila = bd.rawQuery(
-                "select hora from Horario", null);
-        if (fila.moveToFirst()) {}
-
-        else {
-
-            for (int i = 10; i < 21; i++) {
-                ContentValues re = new ContentValues();
-                re.put("hora", i);
-                bd.insert("Horario", null, re);
-            }
-        }
-
-        bd.close();
-
-    }
 }

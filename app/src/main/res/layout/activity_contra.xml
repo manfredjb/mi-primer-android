@@ -166,6 +166,6 @@
             android:text="Guardar"
             android:id="@+id/BtnGuardarcontra"
             android:layout_column="7"
-            android:onClick="guardarcontra" />
+            android:onClick="BtnGuardarcontra" />
     </TableRow>
 </TableLayout>

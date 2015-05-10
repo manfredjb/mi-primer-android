@@ -1,5 +1,6 @@
 package com.autolavado.carwashlemon;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -42,7 +43,8 @@ public class principalActivity extends ActionBarActivity {
         /*
          * Vamos a llenar el spinner de horas
          */
-        mostrarHoras();
+        llenarhorarios(); // crear los registros de horas en la base de datos
+        mostrarHoras(); // mostrar solo las horas disponibles
 
         /*
          * Creamos una vector con los nombres de las sucursales para agregarlas al spinner
@@ -129,9 +131,9 @@ public class principalActivity extends ActionBarActivity {
         TabHost tabHost=(TabHost)findViewById(R.id.tabHost);
         tabHost.setup();
 
-        TabHost.TabSpec spec1=tabHost.newTabSpec("Registo");
+        TabHost.TabSpec spec1=tabHost.newTabSpec("Nueva cita");
         spec1.setContent(R.id.tabCita);
-        spec1.setIndicator("Registo");
+        spec1.setIndicator("Nueva cita");
 
         TabHost.TabSpec spec2=tabHost.newTabSpec("Sucursales");
         spec2.setIndicator("Sucursales");
@@ -206,14 +208,16 @@ public class principalActivity extends ActionBarActivity {
          * Finalmente guardamos la cita
          */
         UsaBD admin = new UsaBD(this);
-        admin.guardarCita(new Cita(correo, sucursal, hora, fechaSeleccionada));
+        Cita cita = new Cita(correo, sucursal, hora, fechaSeleccionada);
+        admin.guardarCita(cita);
 
         // mostrar una confirmacion
         Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, hora + " - " + fechaSeleccionada.toString(), duration);
+        int duration = Toast.LENGTH_LONG;
+        Toast toast = Toast.makeText(context, "La cita se ha guardado con éxito", duration);
         toast.show();
 
+        mostrarHoras();
 
     }
 
@@ -236,18 +240,29 @@ public class principalActivity extends ActionBarActivity {
            // return true;
        //}
         switch (item.getItemId()){
-            case R.id.action_contra:
+            case R.id.action_contra:{
                 llamarContra();
-            case R.id.action_tel:
-                llamarTel();
-            case R.id.action_salir:
-                finish();
+                break;
+            }
 
-            default:
+            case R.id.action_tel:{
+                llamarTel();
+                break;
+            }
+
+            case R.id.action_salir:{
+                finish();
+                break;
+            }
+
+
+            default:{
                 return super.onOptionsItemSelected(item);
+            }
+
         }
 
-
+        return true;
     }
 
 
@@ -294,11 +309,24 @@ public class principalActivity extends ActionBarActivity {
         ArrayAdapter<String> spinnerHorasArrayAdapter = new ArrayAdapter<String>(this,   android.R.layout.simple_spinner_item, horas);
         spinnerHorasArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerHoras.setAdapter(spinnerHorasArrayAdapter);
+    }
 
-        // mostrar una confirmacion
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, sucursal.getNombre() + " - " + fechaSeleccionada.toString(), duration);
-        toast.show();
+    public void llenarhorarios(){
+
+        UsaBD admin = new UsaBD(this);
+        SQLiteDatabase bd = admin.getWritableDatabase();
+
+        Cursor fila = bd.rawQuery(
+                "select hora from Horario", null);
+        if (!fila.moveToFirst()) {
+            for (int i = 10; i < 21; i++) {
+                ContentValues re = new ContentValues();
+                re.put("hora", i);
+                bd.insert("Horario", null, re);
+            }
+        }
+
+        bd.close();
+
     }
 }

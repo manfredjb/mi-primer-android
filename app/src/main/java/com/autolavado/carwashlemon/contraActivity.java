@@ -21,6 +21,7 @@ public class contraActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contra);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         vcontra=(EditText)findViewById(R.id.txtcontact);
         contran=(EditText)findViewById(R.id.txtncon);
@@ -37,28 +38,28 @@ public class contraActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        /** int id = item.getItemId();
 
-         //noinspection SimplifiableIfStatement
-         if (id == R.id.action_settings) {
-         return true;
-         }
-
-         return super.onOptionsItemSelected(item);**/
         switch (item.getItemId()){
-            case R.id.action_contra:
+            case R.id.action_contra:{
                 llamarContra();
-            case R.id.action_tel:
+                break;
+            }
+
+            case R.id.action_tel:{
                 llamarTel();
-            case R.id.action_salir:
+                break;
+            }
+            case R.id.action_salir:{
                 finish();
+                break;
+            }
+
 
             default:
                 return super.onOptionsItemSelected(item);
         }
+
+        return true;
 
     }
 
@@ -83,7 +84,7 @@ public class contraActivity extends ActionBarActivity {
                     Toast.LENGTH_LONG).show();
         }
         else {
-            if (nc == nnc) {
+            if (nc.equals(nnc)) {
 
 
                 AlertDialog.Builder dialogo4 = new AlertDialog.Builder(this);
@@ -122,8 +123,8 @@ public class contraActivity extends ActionBarActivity {
             ContentValues registro = new ContentValues();
 
             registro.put("contra", ncon);
-
-            int cant = bd.update("Usuarios", registro, "contra=" + ncon, null);
+            String correo = fila.getString(0);
+            int cant = bd.update("Usuarios", registro, "correo=?", new String[]{ correo });
 
             if (cant == 1){
                 Toast.makeText(this, "Se actualizó el usuario", Toast.LENGTH_SHORT)
